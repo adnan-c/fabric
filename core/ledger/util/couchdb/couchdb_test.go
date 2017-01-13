@@ -23,6 +23,8 @@ import (
 
 	"github.com/hyperledger/fabric/core/ledger/ledgerconfig"
 	"github.com/hyperledger/fabric/core/ledger/testutil"
+  "github.com/spf13/viper"
+
 )
 
 //Basic setup to test couch
