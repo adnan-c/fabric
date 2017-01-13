@@ -21,3 +21,10 @@ unit-tests:
     - /var/run/docker.sock:/var/run/docker.sock
     - ${GOPATH}/src/github.com/hyperledger/fabric:/opt/gopath/src/github.com/hyperledger/fabric
   command: ./unit-test/run.sh
+
+  couchdb0:
+    image: klaemo/couchdb:2.0.0
+    command: tini -- /docker-entrypoint.sh /opt/couchdb/bin/couchdb
+    ports:
+      - 598c 45:5984
+    container_name: couchdb0

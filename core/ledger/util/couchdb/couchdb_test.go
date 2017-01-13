@@ -70,6 +70,7 @@ func TestDBBadConnectionDef(t *testing.T) {
 }
 
 func TestDBCreateSaveWithoutRevision(t *testing.T) {
+  viper.Set("ledger.state.stateDatabase", "CouchDB")
 
 	if ledgerconfig.IsCouchDBEnabled() == true {
 
