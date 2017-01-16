@@ -8,10 +8,18 @@ vp:
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
 
+  couchdb0:
+    image: klaemo/couchdb:2.0.0
+    command: tini -- /docker-entrypoint.sh /opt/couchdb/bin/couchdb
+    ports:
+      - 5984:5984
+    container_name: couchdb0
+
 unit-tests:
   image: hyperledger/fabric-testenv
   links:
     - vp
+    - couchdb0
   environment:
     - UNIT_TEST_PEER_IP=vp
     - GO_LDFLAGS
@@ -21,10 +29,3 @@ unit-tests:
     - /var/run/docker.sock:/var/run/docker.sock
     - ${GOPATH}/src/github.com/hyperledger/fabric:/opt/gopath/src/github.com/hyperledger/fabric
   command: ./unit-test/run.sh
-
-  couchdb0:
-    image: klaemo/couchdb:2.0.0
-    command: tini -- /docker-entrypoint.sh /opt/couchdb/bin/couchdb
-    ports:
-      - 5984:5984
-    container_name: couchdb0
