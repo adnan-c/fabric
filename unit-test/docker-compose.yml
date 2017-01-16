@@ -8,12 +8,12 @@ vp:
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
 
-  couchdb0:
-    image: klaemo/couchdb:2.0.0
-    command: tini -- /docker-entrypoint.sh /opt/couchdb/bin/couchdb
-    ports:
-      - 5984:5984
-    container_name: couchdb0
+couchdb0:
+  image: klaemo/couchdb:2.0.0
+  command: tini -- /docker-entrypoint.sh /opt/couchdb/bin/couchdb
+  ports:
+    - 5984:5984
+  container_name: couchdb0
 
 unit-tests:
   image: hyperledger/fabric-testenv
